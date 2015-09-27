@@ -1,6 +1,12 @@
 <?php
 
-// Database credentials
+/* Database credentials
+ *
+ * It should define the following variables :
+ *
+ * [ DB_HOSTNAME, DB_NAME, DB_USER, DB_PASS ]
+ *
+ */
 include_once('config/db_credentials.php');
 
 // Absolute path to current file's dir
