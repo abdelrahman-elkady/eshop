@@ -1,0 +1,21 @@
+{
+  "name": "eshop",
+  "version": "0.1.0",
+  "homepage": "https://github.com/abdelrahman-elkady/eshop",
+  "authors": [
+    "kady <elkadyabdelrahman@gmail.com>",
+    "Mohamed Mostafa <mohamedelhamamsy789@gmail.com>"
+  ],
+  "description": "Advanced media lab course mini project - eshop",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "bootstrap": "~3.3.5"
+  }
+}
