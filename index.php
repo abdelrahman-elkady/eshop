@@ -1,6 +1,6 @@
 <?php
 
-  include_once('config.php');
+  include_once('config/config.php');
   session_start();
 
   $body = 'templates/register.tpl.php';
