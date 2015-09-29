@@ -15,7 +15,7 @@
     <!-- /Content -->
 
     <script type="text/javascript">
-      <?php include_once $bottom_scripts ?>
+      <? php include_once $bottom_scripts ?>
     </script>
 
   </body>
