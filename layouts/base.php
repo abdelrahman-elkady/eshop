@@ -10,6 +10,18 @@
 
   <body>
 
+    <!-- Error Handling -->
+    <div class="error">
+      <?php foreach($errors as $error): ?>
+        <div class="error-message">
+          <p>
+            <?php echo $error ?>
+          </p>
+        </div>
+      <?php endforeach; ?>
+    </div>
+    <!-- /Error Handling -->
+
     <!-- Content -->
     <?php include_once $body ?>
     <!-- /Content -->

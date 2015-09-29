@@ -10,7 +10,6 @@
 
   $userObj->registerUser();
 
-
   include_once('layouts/base.php');
 
 ?>

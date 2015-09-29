@@ -19,6 +19,7 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 function __autoload($className)
 {
+    // All our classes should be included into files with the same name but in lowercase!
     include 'classes/'.strtolower($className).'.class.php';
 }
 

@@ -4,9 +4,11 @@ class User
 {
 
     private $db;
+    private $errors;
 
     function __construct($db) {
       $this->db = $db;
+      $this->errors = array();
     }
 
     /*
@@ -16,10 +18,13 @@ class User
     {
 
         if (!(isset($_POST['name']) || isset($_POST['password']) || isset($_POST['form_token']))) {
-            $error = 'Something went wrong, go kill yourself!';
+            $this->errors[] = 'Submitting your request failed, please fill in all your information';
         } elseif ($_POST['form_token'] != $_SESSION['form_token']) {
-            $error = 'Wait a minute ! hacking something ?! smart ? go kill yourelf :)';
+            $this->errors[] = 'Something went wrong, please try again'; // ಠ ּ͜೦
         } else {
+
+            // TODO: Modify based on the new user schema
+
             $name = $_POST['name'];
             $password = sha1($_POST['password']);
             $email = $_POST['email'];
@@ -37,10 +42,11 @@ class User
 
                 $username = $name;
 
-                $body = 'templates/index.tpl.php';
+                $body = 'templates/index.tpl.php'; // FIXME should redirect better ?
             } catch (Exception $e) {
-                echo $e->getCode();
+                $this->errors[] = $e->getMessage();
             }
+
         }
     }
 }

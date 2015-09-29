@@ -1,6 +1,5 @@
 <?php
-  $form_token = md5( uniqid('auth', true) );
-
+  $form_token = md5(uniqid('auth', true));
   $_SESSION['form_token'] = $form_token;
 ?>
 
@@ -16,5 +15,5 @@
 
   <input type="hidden" name="form_token" value="<?php echo $_SESSION['form_token']; ?>">
 
-  <input type="submit" value="Register &rarr;">
+  <input type="submit" value="Register">
 </form>
