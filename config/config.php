@@ -13,7 +13,7 @@ include_once 'config/db_credentials.php';
 if (!defined('ABSPATH')) {
     define('ABSPATH', dirname(__FILE__).'/');
 }
-global $db;
+
 $db = new PDO('mysql:host='.DB_HOSTNAME.';dbname='.DB_NAME, DB_USER, DB_PASS);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 

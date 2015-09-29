@@ -3,8 +3,10 @@
 class User
 {
 
-    public function __construct() {
+    private $db;
 
+    function __construct($db) {
+      $this->db = $db;
     }
 
     /*
@@ -23,7 +25,7 @@ class User
             $email = $_POST['email'];
 
             try {
-                $stmt = $db->prepare('INSERT INTO `users`(name,password,email) VALUES (:name,:password,:email)');
+                $stmt = $this->db->prepare('INSERT INTO `users`(name,password,email) VALUES (:name,:password,:email)');
 
                 $stmt->bindParam(':name', $name, PDO::PARAM_STR);
                 $stmt->bindParam(':password', $password, PDO::PARAM_STR);
