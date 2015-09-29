@@ -26,6 +26,9 @@
     <?php include_once $body ?>
     <!-- /Content -->
 
+    <?php include_once 'includes/scripts.php'; ?>
+
+    <!-- FIXME: need to include this as a dynamic one ?! -->
     <script type="text/javascript">
       <? php include_once $bottom_scripts ?>
     </script>
