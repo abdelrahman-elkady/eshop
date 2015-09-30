@@ -3,29 +3,29 @@
   $_SESSION['form_token'] = $form_token;
 ?>
 
-<form action="index.php" method="post" role="form">
+<form action="index.php" method="post" role="form" enctype="multipart/form-data" >
 
   <legend>Create a new account</legend>
   <div class="form-group">
-    <label for="first-name">First Name</label>
-    <input type="text" class="form-control" id="first-name" placeholder="Someone">
+    <label for="first_name">First Name</label>
+    <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Someone">
   </div>
   <div class="form-group">
-    <label for="last-name">Last Name</label>
-    <input type="text" class="form-control" id="last-name" placeholder="Someone Else">
+    <label for="last_name">Last Name</label>
+    <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Someone Else">
   </div>
   <div class="form-group">
     <label for="email">Email</label>
-    <input type="email" class="form-control" id="email" placeholder="someone@somewhere.com">
+    <input type="email" class="form-control" name="email" id="email" placeholder="someone@somewhere.com">
   </div>
   <div class="form-group">
-    <label for="password">Email</label>
-    <input type="password" class="form-control" id="password" placeholder="•••••••">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" name="password" id="password" placeholder="•••••••">
   </div>
 
   <div class="form-group">
-    <label for="avatar-file-upload">Avatar</label>
-    <input type="file" id="avatar-file-upload">
+    <label for="avatar_file">Avatar</label>
+    <input type="file" name="avatar_file" id="avatar_file">
   </div>
 
   <input type="hidden" name="form_token" value="<?php echo $form_token; ?>">
