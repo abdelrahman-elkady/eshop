@@ -10,27 +10,34 @@
 
   <body>
 
-    <!-- Error Handling -->
-    <div class="error">
-      <?php foreach($errors as $error): ?>
-        <div class="error-message">
-          <p>
-            <?php echo $error ?>
-          </p>
-        </div>
-      <?php endforeach; ?>
-    </div>
-    <!-- /Error Handling -->
+    <?php include_once 'includes/nav.php' ?>
 
-    <!-- Content -->
-    <?php include_once $body ?>
-    <!-- /Content -->
+    <div class="container">
+       <!-- Error Handling -->
+       <?php if(isset($errors)): ?>
+        <div class="error">
+          <?php foreach($errors as $error): ?>
+            <div class="error-message">
+              <p>
+                <?php echo $error ?>
+              </p>
+            </div>
+          <?php endforeach; ?>
+        </div>
+       <?php endif; ?>
+       <!-- /Error Handling -->
+
+        <!-- Content -->
+        <?php include_once $body ?>
+        <!-- /Content -->
+    </div>
+    <!-- /.container -->
 
     <?php include_once 'includes/scripts.php'; ?>
 
     <!-- FIXME: need to include this as a dynamic one ?! -->
     <script type="text/javascript">
-      <? php include_once $bottom_scripts ?>
+      <?php include_once $bottom_scripts; ?>
     </script>
 
   </body>

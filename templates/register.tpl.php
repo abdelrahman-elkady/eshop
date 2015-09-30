@@ -3,17 +3,33 @@
   $_SESSION['form_token'] = $form_token;
 ?>
 
-<form action="index.php" method="post">
-  <label for="name">Name</label>
-  <input type="text" name="name" value="">
-  <br>
-  <label for="password">Password</label>
-  <input type="password" name="password" value="">
-  <br>
-  <label for="email">Email</label>
-  <input type="text" name="email" value="">
+<form action="index.php" method="post" role="form">
 
-  <input type="hidden" name="form_token" value="<?php echo $_SESSION['form_token']; ?>">
+  <legend>Create a new account</legend>
+  <div class="form-group">
+    <label for="first-name">First Name</label>
+    <input type="text" class="form-control" id="first-name" placeholder="Someone">
+  </div>
+  <div class="form-group">
+    <label for="last-name">Last Name</label>
+    <input type="text" class="form-control" id="last-name" placeholder="Someone Else">
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" id="email" placeholder="someone@somewhere.com">
+  </div>
+  <div class="form-group">
+    <label for="password">Email</label>
+    <input type="password" class="form-control" id="password" placeholder="•••••••">
+  </div>
 
-  <input type="submit" value="Register">
+  <div class="form-group">
+    <label for="avatar-file-upload">Avatar</label>
+    <input type="file" id="avatar-file-upload">
+  </div>
+
+  <input type="hidden" name="form_token" value="<?php echo $form_token; ?>">
+
+  <button type="submit" class="btn btn-primary">Register</button>
+
 </form>

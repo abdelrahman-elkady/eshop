@@ -1,1 +1,3 @@
-console.log('script works');
+$(document).ready(function() {
+  $('.dropdown-toggle').dropdown();
+});
