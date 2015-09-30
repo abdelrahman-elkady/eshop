@@ -5,7 +5,7 @@ CREATE TABLE `users` (
   `last_name` VARCHAR(80) NOT NULL,
   `email` VARCHAR(255) NOT NULL UNIQUE,
   `password` VARCHAR(100) NOT NULL,
-  `avatar` VARCHAR(2083), -- as suggested in http://stackoverflow.com/questions/219569/best-database-field-type-for-a-url , TODO: DEFAULT Value ?
+  `avatar` VARCHAR(2083) DEFAULT 'assets/images/default_avatar.png' , -- as suggested in http://stackoverflow.com/questions/219569/best-database-field-type-for-a-url , TODO: DEFAULT Value ?
   PRIMARY KEY(`user_id`)
 
 );
