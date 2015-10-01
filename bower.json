@@ -19,5 +19,6 @@
     "bootstrap": "~3.3.5",
     "font-awesome": "fontawesome#~4.4.0",
     "flat-ui": "~2.2.2"
-  }
+  },
+  "devDependencies": {}
 }

@@ -12,4 +12,6 @@
   <!-- Font awesome -->
   <link rel="stylesheet" href="assets/bower_components/font-awesome/css/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
 
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/main.css" media="screen" title="no title" charset="utf-8">
 </head>

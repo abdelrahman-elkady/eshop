@@ -4,11 +4,19 @@
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="sr-only">Toggle navigation</span>
       </button>
-      <a class="navbar-brand" href="#">Eshop</a>
+      <a class="navbar-brand" href="index.php">Eshop</a>
     </div>
     <div class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
+
+      <ul class="nav navbar-nav navbar-right">
+        <?php if($userObj->isSignedIn()): ?>
+          <li><a href="logout.php">Logout</a></li> <!-- TODO: create logout.php -->
+        <?php else: ?>
+          <li><a href="login.php">Login</a></li> <!-- TODO: create login.php -->
+        <?php endif; ?>
       </ul>
+      <!-- /.navbar-right -->
+
     </div>
     <!--/.nav-collapse -->
   </div>

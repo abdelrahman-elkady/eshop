@@ -46,6 +46,10 @@ class User
         }
     }
 
+    public function isSignedIn(){
+      return isset($_SESSION['user_id']);
+    }
+
     public function getErrors(){
       return $this->errors;
     }
