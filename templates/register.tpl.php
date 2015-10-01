@@ -3,7 +3,7 @@
   $_SESSION['form_token'] = $form_token;
 ?>
 
-<form action="index.php" method="post" role="form" enctype="multipart/form-data" >
+<form action="register.php" method="post" role="form" enctype="multipart/form-data" >
 
   <legend>Create a new account</legend>
   <div class="form-group">
