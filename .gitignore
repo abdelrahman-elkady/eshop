@@ -1,3 +1,9 @@
 db_credentials.php
 node_modules/
 bower_components/
+
+# Ignore all the avatars
+assets/images/avatars/
+
+# Except the default avatar
+!assets/images/avatars/default_avatar.png

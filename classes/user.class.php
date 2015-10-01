@@ -49,7 +49,7 @@ class User
 
     private function uploadAvatar()
     {
-        $target_dir = 'assets/images/avatars';
+        $target_dir = 'assets/images/avatars/';
         $target_file = $target_dir.basename($_FILES['avatar_file']['name']);
 
         if (isset($_POST['submit'])) {
