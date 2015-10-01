@@ -28,4 +28,6 @@ function __autoload($className)
     include 'classes/'.strtolower($className).'.class.php';
 }
 
+$userObj = new User($db);
+
 ?>

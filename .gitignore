@@ -7,3 +7,6 @@ assets/images/avatars/
 
 # Except the default avatar
 !assets/images/avatars/default_avatar.png
+
+# Chrome Logger file
+ChromePhp.php

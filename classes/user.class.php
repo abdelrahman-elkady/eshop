@@ -40,11 +40,14 @@ class User
 
                 unset($_SESSION['form_token']);
 
-                Utils::redirect('index.php');
             } catch (Exception $e) {
                 $this->errors[] = $e->getMessage();
             }
         }
+    }
+
+    public function getErrors(){
+      return $this->errors;
     }
 
     private function uploadAvatar()
