@@ -17,26 +17,29 @@ class User
     public function registerUser()
     {
         if (!(isset($_POST['first_name']) || isset($_POST['last_name']) || isset($_POST['email']) || isset($_POST['password']) || isset($_POST['form_token']))) {
-            $this->errors[] = 'Submitting your request failed, please fill in all your information';
+            $this->errors[] = 'Submitting your request failed, please try again later';
         } elseif ($_POST['form_token'] != $_SESSION['form_token']) {
             $this->errors[] = 'Something went wrong, please try again'; // ಠ ּ͜೦
+        } elseif (strlen($_POST['first_name']) < 2 || strlen($_POST['last_name']) < 2 || strlen($_POST['email']) < 2) {
+            $this->errors[] = 'Please make sure you filled in all the required fields';
+        } elseif (strlen($_POST['password']) < 8) {
+            $this->errors[] = 'Please make sure that the password is more than 8 characters';
         } else {
             $firstName = $_POST['first_name'];
             $lastName = $_POST['last_name'];
             $email = $_POST['email'];
             $password = sha1($_POST['password']); // TODO: use more secure hashing mechanism
 
-            if (!empty($_POST['avatar_file'])) {
+            if (!empty($_FILES['avatar_file']['name'])) {
                 $avatar = $this->uploadAvatar();
             }
 
             try {
                 // FIXME: Needs to be refactored !
-                if (!empty($_POST['avatar_file'])) {
+                if (!empty($_FILES['avatar_file']['name'])) {
                     $stmt = $this->db->prepare('INSERT INTO `users`(first_name,last_name,email,password,avatar) VALUES (:firstName,:lastName,:email,:password,:avatar)');
                     $stmt->bindParam(':avatar', $avatar, PDO::PARAM_STR);
-                }
-                else {
+                } else {
                     $stmt = $this->db->prepare('INSERT INTO `users`(first_name,last_name,email,password) VALUES (:firstName,:lastName,:email,:password)');
                 }
 
@@ -44,7 +47,6 @@ class User
                 $stmt->bindParam(':lastName', $lastName, PDO::PARAM_STR);
                 $stmt->bindParam(':email', $email, PDO::PARAM_STR);
                 $stmt->bindParam(':password', $password, PDO::PARAM_STR);
-
 
                 $stmt->execute();
 
