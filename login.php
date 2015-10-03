@@ -16,7 +16,7 @@ if ($userObj->isSignedIn()) {
         unset($_SERVER['REQUEST_METHOD']);
     }
 
-    $errors = $userObj->getErrors();
 }
 
+$errors = $userObj->getErrors();
 include_once 'layouts/base.php';

@@ -15,7 +15,7 @@ class User
      */
     public function registerUser()
     {
-        if (!(isset($_POST['first_name']) && isset($_POST['last_name']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['form_token']))) {
+        if (!(isset($_POST['first_name']) && isset($_POST['last_name']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password_confirm']) && isset($_POST['form_token']))) {
             $this->errors[] = 'Submitting your request failed, please try again later';
         } elseif ($_POST['form_token'] != $_SESSION['form_token']) {
             $this->errors[] = 'Something went wrong, please try again'; // ಠ ּ͜೦
@@ -23,7 +23,9 @@ class User
             $this->errors[] = 'Please make sure you filled in all the required fields';
         } elseif (strlen($_POST['password']) < 8) {
             $this->errors[] = 'Please make sure that the password is more than 8 characters';
-        } else {
+        } elseif($_POST['password'] != $_POST['password_confirm']){
+             $this->errors[] = 'Password does not match';
+        }else {
             $firstName = $_POST['first_name'];
             $lastName = $_POST['last_name'];
             $email = $_POST['email'];

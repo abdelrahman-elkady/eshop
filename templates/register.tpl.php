@@ -22,6 +22,10 @@
     <label for="password">Password</label>
     <input type="password" class="form-control" name="password" id="password" placeholder="•••••••">
   </div>
+   <div class="form-group">
+    <label for="password_confirm">Confirm Password</label>
+    <input type="password" class="form-control" name="password_confirm" id="password_confirm" placeholder="•••••••">
+  </div>
 
   <div class="form-group">
     <label for="avatar_file">Avatar</label>
