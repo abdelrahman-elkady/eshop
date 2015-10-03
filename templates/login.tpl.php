@@ -17,7 +17,7 @@ $_SESSION['form_token'] = $form_token;
 
 	<input type="hidden" name="form_token" value="<?php echo $form_token; ?>">
 
-	<button type="submit" class="btn btn-primary">Register</button>
+	<button type="submit" class="btn btn-primary">Login</button>
 
 
 </form>
