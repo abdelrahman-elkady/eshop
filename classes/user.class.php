@@ -1,5 +1,4 @@
 <?php
-include 'ChromePhp.php';
 class User
 {
     private $db;
@@ -89,7 +88,6 @@ class User
                 {
                     unset($_SESSION['form_token']);
                     $_SESSION['user_id'] = $id;
-                    ChromePhp::log($_SESSION['user_id']);
                 }
             } catch (Exception $e) {
                 $this->errors[] = $e->getMessage();
