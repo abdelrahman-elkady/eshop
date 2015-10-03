@@ -57,6 +57,11 @@ class User
         }
     }
 
+    public function loginUser()
+    {
+        
+    }
+
     public function isSignedIn()
     {
         return isset($_SESSION['user_id']);
