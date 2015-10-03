@@ -88,6 +88,7 @@ class User
                 else
                 {
                     unset($_SESSION['form_token']);
+                    $_SESSION['user_id'] = $id;
                 }
             } catch (Exception $e) {
                 $this->errors[] = $e->getMessage();
