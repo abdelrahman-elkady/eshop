@@ -1,5 +1,4 @@
 <?php
-include('ChromePhp.php');
 
 class User
 {
@@ -88,7 +87,6 @@ class User
                 }
                 else
                 {
-                    ChromePhp::log("hello baby ".$id);                
                     unset($_SESSION['form_token']);
                 }
             } catch (Exception $e) {
