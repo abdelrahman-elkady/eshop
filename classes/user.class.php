@@ -16,7 +16,7 @@ class User
      */
     public function registerUser()
     {
-        if (!(isset($_POST['first_name']) || isset($_POST['last_name']) || isset($_POST['email']) || isset($_POST['password']) || isset($_POST['form_token']))) {
+        if (!(isset($_POST['first_name']) && isset($_POST['last_name']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['form_token']))) {
             $this->errors[] = 'Submitting your request failed, please try again later';
         } elseif ($_POST['form_token'] != $_SESSION['form_token']) {
             $this->errors[] = 'Something went wrong, please try again'; // ಠ ּ͜೦
@@ -59,7 +59,20 @@ class User
 
     public function loginUser()
     {
-        
+        if (!(isset($_POST['email']) || isset($_POST['last_name']) || isset($_POST['email']) || isset($_POST['password']) || isset($_POST['form_token']))) {
+            $this->errors[] = 'Submitting your request failed, please try again later';
+        } elseif ($_POST['form_token'] != $_SESSION['form_token']) {
+            $this->errors[] = 'Something went wrong, please try again'; // ಠ ּ͜೦
+        } elseif (strlen($_POST['first_name']) < 2 || strlen($_POST['last_name']) < 2 || strlen($_POST['email']) < 2) {
+            $this->errors[] = 'Please make sure you filled in all the required fields';
+        } elseif (strlen($_POST['password']) < 8) {
+            $this->errors[] = 'Please make sure that the password is more than 8 characters';
+        } else {
+            $firstName = $_POST['first_name'];
+            $lastName = $_POST['last_name'];
+            $email = $_POST['email'];
+            $password = sha1($_POST['password']); // TODO: use more secure hashing mechanism
+        }        
     }
 
     public function isSignedIn()
