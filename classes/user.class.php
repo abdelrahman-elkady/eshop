@@ -1,4 +1,5 @@
 <?php
+include('ChromePhp.php');
 
 class User
 {
@@ -70,7 +71,29 @@ class User
         } else {
             $email = $_POST['email'];
             $password = sha1($_POST['password']); // TODO: use more secure hashing mechanism
-        }        
+        }
+
+        try {
+            $stmt = $this->db->prepare("SELECT user_id FROM `users` WHERE email = :email AND password = :password");
+
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            $stmt->bindParam(':password', $password, PDO::PARAM_STR);
+            $stmt->execute();
+            
+            $id = $stmt->fetchColumn();
+
+                if($id == false)
+                {
+                    $message = 'Access Error';
+                }
+                else
+                {
+                    ChromePhp::log("hello baby ".$id);                
+                    unset($_SESSION['form_token']);
+                }
+            } catch (Exception $e) {
+                $this->errors[] = $e->getMessage();
+            }        
     }
 
     public function isSignedIn()
