@@ -73,7 +73,7 @@ class User
         }
 
         try {
-            $stmt = $this->db->prepare('SELECT user_id,first_name,password,avatar FROM `users` WHERE email = :email AND password = :password');
+            $stmt = $this->db->prepare('SELECT user_id,first_name,last_name,email,password,avatar FROM `users` WHERE email = :email AND password = :password');
 
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->bindParam(':password', $password, PDO::PARAM_STR);
@@ -82,16 +82,20 @@ class User
             $data = $stmt->fetch(PDO::FETCH_BOTH);
 
             $id = $data[0];
-            $name = $data[1];
-            $pass = $data[2];
-            $avatar = $data[3];
+            $firstName = $data[1];
+            $lastName = $data[2];
+            $email = $data[3];
+            $pass = $data[4];
+            $avatar = $data[5];
 
             if ($id == false) {
                 $message = 'Access Error';
             } else {
                 unset($_SESSION['form_token']);
                 $_SESSION['user']['id'] = $id;
-                $_SESSION['user']['name'] = $name;
+                $_SESSION['user']['first_name'] = $firstName;
+                $_SESSION['user']['last_name'] = $lastName;
+                $_SESSION['user']['email'] = $email;
                 $_SESSION['user']['pass'] = $pass;
                 $_SESSION['user']['avatar'] = $avatar;
             }

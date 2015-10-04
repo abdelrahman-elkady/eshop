@@ -11,7 +11,7 @@
       <ul class="nav navbar-nav navbar-right">
         <?php if ($userObj->isSignedIn()): ?>
 
-          <p class="navbar-text">Welcome, <span id="nav-link"><a href="profile.php"><?php echo $_SESSION['user']['name']; ?></span></a></p>
+          <p class="navbar-text">Welcome, <span id="nav-link"><a href="profile.php"><?php echo $_SESSION['user']['first_name']; ?></span></a></p>
 
           <li><a href="logout.php">Logout</a></li>
         <?php else: ?>
