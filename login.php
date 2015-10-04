@@ -11,11 +11,11 @@ if ($userObj->isSignedIn()) {
     $body = 'templates/login.tpl.php';
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $userObj->loginUser();
-        Utils::redirect('index.php');
+        if ($userObj->loginUser()) {
+            Utils::redirect('index.php');
+        }
         unset($_SERVER['REQUEST_METHOD']);
     }
-
 }
 
 $errors = $userObj->getErrors();

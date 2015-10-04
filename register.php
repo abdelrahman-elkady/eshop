@@ -10,8 +10,10 @@ if ($userObj->isSignedIn()) {
     $body = 'templates/register.tpl.php';
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $userObj->registerUser();
-        Utils::redirect('login.php');
+        if ($userObj->registerUser()) {
+            Utils::redirect('login.php');
+        }
+        
         unset($_SERVER['REQUEST_METHOD']);
     }
 }

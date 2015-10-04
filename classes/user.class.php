@@ -18,22 +18,33 @@ class User
     {
         if (!(isset($_POST['first_name']) && isset($_POST['last_name']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password_confirm']) && isset($_POST['form_token']))) {
             $this->errors[] = 'Submitting your request failed, please try again later';
+
+            return false;
         } elseif ($_POST['form_token'] != $_SESSION['form_token']) {
             $this->errors[] = 'Something went wrong, please try again'; // ಠ ּ͜೦
+            return false;
         } elseif (strlen($_POST['first_name']) < 2 || strlen($_POST['last_name']) < 2 || strlen($_POST['email']) < 5) {
             $this->errors[] = 'Please make sure you filled in all the required fields';
+
+            return false;
         } elseif (strlen($_POST['password']) < 8) {
             $this->errors[] = 'Please make sure that the password is more than 8 characters';
-        } elseif($_POST['password'] != $_POST['password_confirm']){
-             $this->errors[] = 'Password does not match';
-        }else {
+
+            return false;
+        } elseif ($_POST['password'] != $_POST['password_confirm']) {
+            $this->errors[] = 'Password does not match';
+
+            return false;
+        } else {
             $firstName = $_POST['first_name'];
             $lastName = $_POST['last_name'];
             $email = $_POST['email'];
             $password = sha1($_POST['password']); // TODO: use more secure hashing mechanism
 
             if (!empty($_FILES['avatar_file']['name'])) {
-                $avatar = $this->uploadAvatar();
+                if (!($avatar = $this->uploadAvatar())) {
+                    return false;
+                }
             }
 
             try {
@@ -53,8 +64,12 @@ class User
                 $stmt->execute();
 
                 unset($_SESSION['form_token']);
+
+                return true;
             } catch (Exception $e) {
                 $this->errors[] = $e->getMessage();
+
+                return false;
             }
         }
     }
@@ -63,16 +78,23 @@ class User
     {
         if (!(isset($_POST['email']) && isset($_POST['password']) && isset($_POST['form_token']))) {
             $this->errors[] = 'Submitting your request failed, please try again later';
+
+            return false;
         } elseif ($_POST['form_token'] != $_SESSION['form_token']) {
             $this->errors[] = 'Something went wrong, please try again'; // ಠ ּ͜೦
+            return false;
         } elseif (strlen($_POST['email']) < 5) {
             $this->errors[] = 'Please make sure you filled in all the required fields';
+
+            return false;
         } elseif (strlen($_POST['password']) < 8) {
             $this->errors[] = 'Please make sure that the password is more than 8 characters';
+
+            return false;
         } else {
             $email = $_POST['email'];
             $password = sha1($_POST['password']); // TODO: use more secure hashing mechanism
-        }
+
 
         try {
             $stmt = $this->db->prepare('SELECT user_id,first_name,last_name,email,password,avatar FROM `users` WHERE email = :email AND password = :password');
@@ -91,7 +113,9 @@ class User
             $avatar = $data[5];
 
             if ($id == false) {
-                $message = 'Access Error';
+                $this->errors[] = 'Authentication failed, please check your username or password';
+
+                return false;
             } else {
                 unset($_SESSION['form_token']);
                 $_SESSION['user']['id'] = $id;
@@ -100,9 +124,14 @@ class User
                 $_SESSION['user']['email'] = $email;
                 $_SESSION['user']['pass'] = $pass;
                 $_SESSION['user']['avatar'] = $avatar;
+
+                return true;
             }
         } catch (Exception $e) {
             $this->errors[] = $e->getMessage();
+
+            return false;
+        }
         }
     }
 
@@ -125,18 +154,22 @@ class User
             $check = getimagesize($_FILES['avatar_file']['tmp_name']);
             if ($check == false) {
                 $this->errors[] = 'File uploaded is not a proper image format';
+
+                return false;
             }
         }
 
         // Check if file already exists
         if (file_exists($target_file)) {
             $this->errors[] = 'This file already exists !';
+
+            return false;
         }
 
         if (!(move_uploaded_file($_FILES['avatar_file']['tmp_name'], $target_file))) {
-            {
-          $this->errors[] = 'Something went wrong !, please try again later';
-        }
+            $this->errors[] = 'Failed to upload your avatar, please try again';
+
+            return false;
         }
 
         return $target_file;
