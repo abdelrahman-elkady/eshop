@@ -1,4 +1,5 @@
 <?php
+
 class User
 {
     private $db;
@@ -74,31 +75,40 @@ class User
         }
 
         try {
-            $stmt = $this->db->prepare("SELECT user_id FROM `users` WHERE email = :email AND password = :password");
+            $stmt = $this->db->prepare('SELECT user_id,first_name,last_name,email,password,avatar FROM `users` WHERE email = :email AND password = :password');
 
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->bindParam(':password', $password, PDO::PARAM_STR);
             $stmt->execute();
-            
-            $id = $stmt->fetchColumn();
 
-                if($id == false)
-                {
-                    $message = 'Access Error';
-                }
-                else
-                {
-                    unset($_SESSION['form_token']);
-                    $_SESSION['user_id'] = $id;
-                }
-            } catch (Exception $e) {
-                $this->errors[] = $e->getMessage();
-            }        
+            $data = $stmt->fetch(PDO::FETCH_BOTH);
+
+            $id = $data[0];
+            $firstName = $data[1];
+            $lastName = $data[2];
+            $email = $data[3];
+            $pass = $data[4];
+            $avatar = $data[5];
+
+            if ($id == false) {
+                $message = 'Access Error';
+            } else {
+                unset($_SESSION['form_token']);
+                $_SESSION['user']['id'] = $id;
+                $_SESSION['user']['first_name'] = $firstName;
+                $_SESSION['user']['last_name'] = $lastName;
+                $_SESSION['user']['email'] = $email;
+                $_SESSION['user']['pass'] = $pass;
+                $_SESSION['user']['avatar'] = $avatar;
+            }
+        } catch (Exception $e) {
+            $this->errors[] = $e->getMessage();
+        }
     }
 
     public function isSignedIn()
     {
-        return isset($_SESSION['user_id']);
+        return isset($_SESSION['user']['id']);
     }
 
     public function getErrors()

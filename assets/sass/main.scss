@@ -1,1 +1,9 @@
 @import "base/base.scss";
+@import "base/variables.scss";
+@import "base/mixins.scss";
+
+@import "partials/nav.scss";
+
+@import "typography.scss";
+
+@import "components/components.scss"

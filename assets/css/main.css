@@ -1,3 +1,63 @@
+.centered, #profile .circular-image, #profile .overlay {
+  text-align: center;
+  margin: 0 auto; }
 
+#nav-link a {
+  color: #65ead0; }
+  #nav-link a:hover {
+    color: #16a085;
+    text-decoration: underline; }
+
+#profile {
+  margin: 30px 0 60px; }
+  #profile .circular-image {
+    background-size: cover;
+    margin-top: 20px;
+    width: 230px;
+    height: 230px;
+    -webkit-border-radius: 115px;
+    -moz-border-radius: 115px;
+    -ms-border-radius: 115px;
+    border-radius: 115px;
+    border: 5px solid #16a085;
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    -o-transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out; }
+    #profile .circular-image:hover {
+      cursor: pointer; }
+      #profile .circular-image:hover .overlay {
+        opacity: 1; }
+  #profile #profile_avatar {
+    overflow: hidden; }
+  #profile .overlay {
+    width: 230px;
+    height: 230px;
+    -webkit-border-radius: 115px;
+    -moz-border-radius: 115px;
+    -ms-border-radius: 115px;
+    border-radius: 115px;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    opacity: 0;
+    -webkit-transition: opacity 0.25s ease;
+    -moz-transition: opacity 0.25s ease;
+    transition: opacity 0.25s ease;
+    padding: auto; }
+    #profile .overlay i {
+      font-size: 50px;
+      color: #16a085;
+      padding: 80px 0;
+      vertical-align: middle; }
+  #profile form {
+    margin-top: 40px; }
+  #profile label {
+    text-align: left; }
+
+#update-profile-form {
+  margin: 0 auto;
+  width: 70%; }
 
 /*# sourceMappingURL=main.css.map */
