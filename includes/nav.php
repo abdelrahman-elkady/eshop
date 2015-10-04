@@ -9,10 +9,13 @@
     <div class="navbar-collapse collapse">
 
       <ul class="nav navbar-nav navbar-right">
-        <?php if($userObj->isSignedIn()): ?>
-          <li><a href="logout.php">Logout</a></li> <!-- TODO: create logout.php -->
+        <?php if ($userObj->isSignedIn()): ?>
+
+          <p class="navbar-text">Welcome, <span id="nav-link"><a href="profile.php"><?php echo $_SESSION['user']['name']; ?></span></a></p>
+
+          <li><a href="logout.php">Logout</a></li>
         <?php else: ?>
-          <li><a href="login.php">Login</a></li> <!-- TODO: create login.php -->
+          <li><a href="login.php">Login</a></li>
         <?php endif; ?>
       </ul>
       <!-- /.navbar-right -->

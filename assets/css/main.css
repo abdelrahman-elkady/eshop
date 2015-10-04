@@ -1,3 +1,7 @@
-
+#nav-link a {
+  color: #65ead0; }
+  #nav-link a:hover {
+    color: #16a085;
+    text-decoration: underline; }
 
 /*# sourceMappingURL=main.css.map */

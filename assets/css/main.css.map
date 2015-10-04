@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "",
-"sources": [],
+"mappings": "AAAA,WAAY;EACV,KAAK,EAAE,OAA4B;EAEnC,iBAAQ;IACN,KAAK,ECJO,OAAO;IDKnB,eAAe,EAAE,SAAS",
+"sources": ["../sass/partials/nav.scss","../sass/base/variables.scss"],
 "names": [],
 "file": "main.css"
 }
