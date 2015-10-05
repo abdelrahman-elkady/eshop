@@ -1,5 +1,5 @@
 <?php
-
+include 'ChromePhp.php';
 class User
 {
     private $db;
@@ -122,7 +122,7 @@ class User
                 $_SESSION['user']['first_name'] = $firstName;
                 $_SESSION['user']['last_name'] = $lastName;
                 $_SESSION['user']['email'] = $email;
-                $_SESSION['user']['pass'] = $pass;
+                $_SESSION['user']['password'] = $pass;
                 $_SESSION['user']['avatar'] = $avatar;
 
                 return true;
@@ -139,42 +139,49 @@ class User
         
         $old_password = sha1($_POST['old_password']);
             
-        if($old_password != $_SESSION['user']['pass']) {
+        if($old_password != $_SESSION['user']['password']) {
             $this->errors[] = 'Wrong Password';
             return false;
         }
+        $fields = array();
         
-        $this->updateField('first_name', $_POST['first_name'], 2);
-        $this->updateField('last_name', $_POST['last_name'], 2);
-        $this->updateField('email', $_POST['email'], 5);
+        $this->addToFields('first_name', $_POST['first_name'], 2, $fields);
+        $this->addToFields('last_name', $_POST['last_name'], 2, $fields);
+        $this->addToFields('email', $_POST['email'], 5, $fields);
 
         if(strlen($_POST['new_password']) < 8) {
             $this->errors[] = 'Please make sure that the new password is more than 8 characters';
         } elseif($_POST['new_password'] != $_POST['confirm_password']) {
             $this->errors[] = 'Password does not match';
         } else {
-            $this->updateField('pass', sha1($_POST['new_password']), 0);
+            $this->addToFields('password', sha1($_POST['new_password']), 0, $fields);
         }
         
+        if(count($fields) > 0) {
+            #Something to update
+            
+        }
+
         return true;
 
     }
 
-    public function updateField($key ,$value ,$min_len){
+    public function addToFields($key ,$value ,$min_len ,&$fields){
 
         if($value != $_SESSION['user'][$key]) {
         
             if(strlen($value) < $min_len){
             
                 $this->errors[] = 'Please make sure the $key field is greater than $min_len';
-            
+                return false;
+
             } else {
-            
-                #TODO UPDATE THE FIELD IN DB
-            
+                $fields[$key] = $value;
+                return true;    
             }
 
         }
+        return true;
     }
     
     public function isSignedIn()
