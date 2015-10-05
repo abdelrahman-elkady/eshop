@@ -136,11 +136,22 @@ class User
     }
 
     public function updateUserProfile(){
-        
-        $this->updateField('first_name', $_POST['first_name'], 2);
-        $this->updateField('last_name', $_POST['last_name'], 2);
-        $this->updateField('email', $_POST['email'], 5);
+        if(isset($_POST['old_password'])){
+            $old_password = sha1($_POST['old_password']);
+            
+            if($old_password != $_SESSION['user']['pass']) {
+                $this->errors[] = 'Wrong Password';
+                return false;
+            }
+            
+            $this->updateField('first_name', $_POST['first_name'], 2);
+            $this->updateField('last_name', $_POST['last_name'], 2);
+            $this->updateField('email', $_POST['email'], 5);
 
+            return true;
+        }
+
+        return true;
     }
 
     public function updateField($key ,$value ,$min_len){
