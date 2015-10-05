@@ -1,8 +1,8 @@
 #nav-link a {
-  color: lighten($primary-color, 30%);
+  color: lighten($secondary-green, 30%);
 
   &:hover {
-    color: $primary-color;
+    color: $secondary-green;
     text-decoration: underline;
   }
 }

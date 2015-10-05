@@ -60,4 +60,28 @@
   margin: 0 auto;
   width: 70%; }
 
+.product {
+  margin: 60px auto;
+  background-color: #34495e;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px; }
+  .product img {
+    height: 350px;
+    width: 100%;
+    -webkit-border-radius: 5px 5px 0 0;
+    -moz-border-radius: 5px 5px 0 0;
+    -ms-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0; }
+  .product .product-info {
+    padding-left: 15px;
+    padding-top: 15px; }
+    .product .product-info * {
+      color: white; }
+    .product .product-info .product-name {
+      font-size: 25px; }
+    .product .product-info .currency {
+      color: #16a08a; }
+
 /*# sourceMappingURL=main.css.map */

@@ -1,0 +1,29 @@
+.product {
+  margin: 60px auto;
+  background-color: $primary-color;
+  @include border-radius(5px);
+
+  img {
+    height: 350px;
+    width: 100%;
+    @include border-radius(5px 5px 0 0);
+  }
+
+  .product-info {
+    padding-left: 15px;
+    padding-top: 15px;
+
+    * {
+      color: white;
+    }
+
+    .product-name {
+      font-size: 25px;
+    }
+
+    .currency {
+      color: adjust-hue($secondary-green, 2);
+
+    }
+  }
+}
