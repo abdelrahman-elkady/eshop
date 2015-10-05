@@ -135,6 +135,10 @@ class User
         }
     }
 
+    public function updateUserProfile(){
+    
+    }
+    
     public function isSignedIn()
     {
         return isset($_SESSION['user']['id']);
