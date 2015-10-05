@@ -1,5 +1,4 @@
  <?php
-
   session_start();
   include_once 'config/config.php';
   $bottom_scripts = 'assets/js/app.js';
@@ -9,7 +8,7 @@
   } else {
       $body = 'templates/profile.tpl.php';
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $userObj->updateUserProfile();
+        $ret = $userObj->updateUserProfile();
         unset($_SERVER['REQUEST_METHOD']);
     }
   }
