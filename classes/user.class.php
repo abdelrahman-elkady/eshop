@@ -136,7 +136,28 @@ class User
     }
 
     public function updateUserProfile(){
-    
+        
+        $this->updateField('first_name', $_POST['first_name'], 2);
+        $this->updateField('last_name', $_POST['last_name'], 2);
+        $this->updateField('email', $_POST['email'], 5);
+
+    }
+
+    public function updateField($key ,$value ,$min_len){
+
+        if($value != $_SESSION['user'][$key]) {
+        
+            if(strlen($value) < $min_len){
+            
+                $this->errors[] = 'Please make sure the $key field is greater than $min_len';
+            
+            } else {
+            
+                #TODO UPDATE THE FIELD IN DB
+            
+            }
+
+        }
     }
     
     public function isSignedIn()
