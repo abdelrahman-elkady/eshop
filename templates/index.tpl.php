@@ -8,7 +8,9 @@
         <h6 class="product-class"><?php echo $product['price']; ?> <i class="fa fa-usd currency"></i></h6>
       </div>
 
-      <a href="#" class="btn btn-success btn-wide btn-block">Add</a>
+      <button href="#" class="btn btn-success btn-wide btn-block" data-toggle="modal" data-target="#add_to_cart_modal" data-id="<?php echo $product['product_id'];?>">BUY</button>
     </div>
   </div>
 <?php endforeach; ?>
+
+<?php include_once 'includes/addToCartModal.php'; ?>

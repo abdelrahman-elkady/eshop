@@ -81,7 +81,21 @@
       color: white; }
     .product .product-info .product-name {
       font-size: 25px; }
-    .product .product-info .currency {
-      color: #16a08a; }
+
+.product-details #product_name {
+  display: inline; }
+.product-details #unit_price {
+  display: inline; }
+  .product-details #unit_price i {
+    padding-left: 5px; }
+.product-details #product-description {
+  font-size: 15px; }
+.product-details .description-wrapper {
+  padding-top: 13px; }
+  .product-details .description-wrapper p {
+    margin: 0; }
+
+.currency {
+  color: #16a08a; }
 
 /*# sourceMappingURL=main.css.map */

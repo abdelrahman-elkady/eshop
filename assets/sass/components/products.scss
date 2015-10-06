@@ -20,10 +20,35 @@
     .product-name {
       font-size: 25px;
     }
+  }
+}
 
-    .currency {
-      color: adjust-hue($secondary-green, 2);
+.product-details {
+  #product_name {
+    display: inline;
+  }
 
+  #unit_price {
+    display: inline;
+
+    i {
+      padding-left: 5px;
     }
   }
+
+  #product-description {
+    font-size: 15px;
+  }
+
+  .description-wrapper {
+    padding-top: 13px;
+
+    p {
+      margin: 0;
+    }
+  }
+}
+
+.currency {
+  color: adjust-hue($secondary-green, 2);
 }
