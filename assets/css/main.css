@@ -94,6 +94,11 @@
   padding-top: 13px; }
   .product-details .description-wrapper p {
     margin: 0; }
+.product-details .quantity-wrapper {
+  margin-top: 15px; }
+  .product-details .quantity-wrapper label {
+    padding-right: 15px;
+    font-size: 18px; }
 
 .currency {
   color: #16a08a; }

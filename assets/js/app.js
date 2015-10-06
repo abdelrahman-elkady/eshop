@@ -10,6 +10,8 @@ $(document).ready(function() {
     var id = button.data('id');
     var modal = $(this);
 
+    modal.find('#cart_quantity').val(1); // Resetting the value again if another modal was opened before
+
 
     $.ajax({
       type: "GET",
@@ -22,6 +24,7 @@ $(document).ready(function() {
         modal.find('#unit_price').append("<i class='fa fa-usd currency'></i>");
 
         modal.find('#product_description').text(data['description']);
+        modal.find('#cart_quantity').attr('max', data['stock']);
 
       }
     });

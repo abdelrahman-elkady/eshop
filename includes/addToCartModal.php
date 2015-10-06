@@ -18,6 +18,13 @@
           <p id="product_description"></p>
         </div>
 
+        <div class="quantity-wrapper">
+          <label for="cart_quantity">quantity:</label>
+          <input type="number" id="cart_quantity" name="cart_quantity" value="1" min="0">
+        </div>
+
+
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary btn-small" data-dismiss="modal">Close</button>
