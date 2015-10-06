@@ -1,6 +1,4 @@
-<?php
-
-
+ <?php
   session_start();
   include_once 'config/config.php';
   $bottom_scripts = 'assets/js/app.js';
@@ -9,6 +7,10 @@
       Utils::redirect('login.php');
   } else {
       $body = 'templates/profile.tpl.php';
+      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $ret = $userObj->updateUserProfile();
+        unset($_SERVER['REQUEST_METHOD']);
+    }
   }
 
   include_once 'layouts/base.php';

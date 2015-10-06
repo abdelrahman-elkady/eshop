@@ -1,5 +1,4 @@
 <?php
-
 class User
 {
     private $db;
@@ -122,7 +121,7 @@ class User
                 $_SESSION['user']['first_name'] = $firstName;
                 $_SESSION['user']['last_name'] = $lastName;
                 $_SESSION['user']['email'] = $email;
-                $_SESSION['user']['pass'] = $pass;
+                $_SESSION['user']['password'] = $pass;
                 $_SESSION['user']['avatar'] = $avatar;
 
                 return true;
@@ -135,6 +134,92 @@ class User
         }
     }
 
+    public function updateUserProfile(){
+        
+        $old_password = sha1($_POST['old_password']);
+            
+        if($old_password != $_SESSION['user']['password']) {
+            $this->errors[] = 'Wrong Password';
+            return false;
+        }
+        $fields = array();
+        
+        $this->addToFields('first_name', $_POST['first_name'], 2, $fields);
+        $this->addToFields('last_name', $_POST['last_name'], 2, $fields);
+        $this->addToFields('email', $_POST['email'], 5, $fields);
+
+        #Avatar
+        if (!empty($_FILES['avatar_file']['name'])) {
+                if (($avatar = $this->uploadAvatar())) {
+                    $this->addToFields('avatar', $avatar, 0, $fields);
+                }
+            }
+
+        #Password
+        if(strlen($_POST['new_password']) < 8) {
+            $this->errors[] = 'Please make sure that the new password is more than 8 characters';
+        } elseif($_POST['new_password'] != $_POST['confirm_password']) {
+            $this->errors[] = 'Password does not match';
+        } else {
+            $this->addToFields('password', sha1($_POST['new_password']), 0, $fields);
+        }
+        
+        if(count($fields) > 0) {
+            #Something to update
+            $query = 'UPDATE `users` SET ';
+            $i = 0;
+            $comma = '';
+            foreach($fields as $key => $value){
+                $_SESSION['user'][$key] = $value;
+                $query .= $comma.'`'.$key.'` = :p'.$i;       
+                $comma = ', ';
+                $i = $i + 1;
+            }
+            $id = $_SESSION['user']['id'];
+            $query .= ' WHERE `users`.`user_id` = '.$id;
+
+
+            try {
+                
+                $stmt = $this->db->prepare($query);
+                
+                $i = 0;
+                
+                foreach ($fields as $key => $value) {
+                    $stmt->bindValue(':p'.$i, $value, PDO::PARAM_STR);
+                    $i = $i + 1;
+                }
+                $stmt->execute();
+
+            } catch (Exception $e) {
+                $this->errors[] = $e->getMessage();
+
+                return false;
+            }
+        }
+
+        return true;
+
+    }
+
+    public function addToFields($key ,$value ,$min_len ,&$fields){
+
+        if($value != $_SESSION['user'][$key]) {
+        
+            if(strlen($value) < $min_len){
+            
+                $this->errors[] = 'Please make sure the $key field is greater than $min_len';
+                return false;
+
+            } else {
+                $fields[$key] = $value;
+                return true;    
+            }
+
+        }
+        return true;
+    }
+    
     public function isSignedIn()
     {
         return isset($_SESSION['user']['id']);
@@ -163,7 +248,7 @@ class User
         if (file_exists($target_file)) {
             $this->errors[] = 'This file already exists !';
 
-            return false;
+            return $target_file;
         }
 
         if (!(move_uploaded_file($_FILES['avatar_file']['tmp_name'], $target_file))) {

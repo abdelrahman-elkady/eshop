@@ -2,7 +2,7 @@ $(document).ready(function() {
   $('.dropdown-toggle').dropdown();
 
   $('#profile_avatar').on('click', function() {
-    $('#avatar_update').click();
+    $('#avatar_file').click();
   });
 
   $('#add_to_cart_modal').on('show.bs.modal', function(event) {
