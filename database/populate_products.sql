@@ -8,7 +8,7 @@ INSERT INTO `products`(name,description,price,stock,picture) VALUES ('Google Nex
   Neuxs phone !',480.0,12,'assets/images/products/nexus-6p.jpg');
 
 INSERT INTO `products`(name,description,price,stock,picture) VALUES ('Crash Bandicoot 1','The best Video
-  game ever created',15.99,3,'assets/images/products/crash-1.jpg');
+  game ever created',15.99,0,'assets/images/products/crash-1.jpg');
 
 INSERT INTO `products`(name,description,price,stock,picture) VALUES ('Windows 10','Powerful operating system
   shipped with integrated spywares',399.99,100,'assets/images/products/windows.jpg');

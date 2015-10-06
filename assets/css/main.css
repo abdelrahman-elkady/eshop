@@ -8,6 +8,10 @@
     color: #16a085;
     text-decoration: underline; }
 
+.product .out-of-stock {
+  color: #e74c3c;
+  font-weight: bold; }
+
 #profile {
   margin: 30px 0 60px; }
   #profile .circular-image {
@@ -63,7 +67,7 @@
 .separator {
   width: 80px;
   height: 1px;
-  background-color: #2C3E50; }
+  background-color: #2c3e50; }
 
 .product {
   margin: 60px auto;
