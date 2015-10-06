@@ -149,6 +149,14 @@ class User
         $this->addToFields('last_name', $_POST['last_name'], 2, $fields);
         $this->addToFields('email', $_POST['email'], 5, $fields);
 
+        #Avatar
+        if (!empty($_FILES['avatar_file']['name'])) {
+                if (($avatar = $this->uploadAvatar())) {
+                    $this->addToFields('avatar', $avatar, 0, $fields);
+                }
+            }
+
+        #Password
         if(strlen($_POST['new_password']) < 8) {
             $this->errors[] = 'Please make sure that the new password is more than 8 characters';
         } elseif($_POST['new_password'] != $_POST['confirm_password']) {
