@@ -1,4 +1,5 @@
 <?php
+
 class User
 {
     private $db;
@@ -178,7 +179,7 @@ class User
                 $i = 0;
                 
                 foreach ($fields as $key => $value) {
-                    $stmt->bindParam(':p'.$i, $value, PDO::PARAM_STR);
+                    $stmt->bindValue(':p'.$i, $value, PDO::PARAM_STR);
                     $i = $i + 1;
                 }
                 $stmt->execute();
