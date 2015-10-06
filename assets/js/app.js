@@ -33,12 +33,16 @@ $(document).ready(function() {
         modal.find('#confirmation_total').text("Total : " + data['price']);
         modal.find('#confirmation_total').append("<i class='fa fa-usd currency'></i>");
 
+        modal.find('#add_to_cart_button').attr('href', 'index.php?id=' + id + '&quantity=' + quantitySpinner.val());
+
       }
     });
 
     quantitySpinner.bind('keyup mouseup', function() {
       modal.find('#confirmation_total').text("Total : " + parseFloat(quantitySpinner.val()) * price);
       modal.find('#confirmation_total').append("<i class='fa fa-usd currency'></i>");
+
+      modal.find('#add_to_cart_button').attr('href', 'index.php?id=' + id + '&quantity=' + quantitySpinner.val());
     });
 
   });

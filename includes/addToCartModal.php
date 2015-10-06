@@ -32,7 +32,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary btn-small" data-dismiss="modal">Close</button>
+        <a href="" class="btn btn-success btn-wide" id="add_to_cart_button">Add to cart</a>
       </div>
     </div>
   </div>
