@@ -1,5 +1,4 @@
 <?php
-include 'ChromePhp.php';
 class User
 {
     private $db;
@@ -182,7 +181,6 @@ class User
                     $stmt->bindParam(':p'.$i, $value, PDO::PARAM_STR);
                     $i = $i + 1;
                 }
-                ChromePhp::log($stmt);
                 $stmt->execute();
 
             } catch (Exception $e) {
