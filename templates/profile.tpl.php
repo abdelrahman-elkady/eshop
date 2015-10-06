@@ -41,7 +41,7 @@
       <input type="password" class="form-control" name="confirm_password" placeholder="•••••••">
     </div>
 
-    <input id="avatar_update" name="avatar_update" class="hidden" type="file">
+    <input id="avatar_file" name="avatar_file" class="hidden" type="file">
 
     <button type="submit" class="btn btn-primary">Save</button>
     <a href="index.php" class="btn btn-danger">Cancel</a>
