@@ -1,5 +1,4 @@
 <?php
-include 'ChromePhp.php';
 class User
 {
     private $db;
@@ -149,7 +148,6 @@ class User
         $this->addToFields('last_name', $_POST['last_name'], 2, $fields);
         $this->addToFields('email', $_POST['email'], 5, $fields);
 
-        ChromePhp::log($_FILES);
         #Avatar
         if (!empty($_FILES['avatar_file']['name'])) {
                 if (($avatar = $this->uploadAvatar())) {
