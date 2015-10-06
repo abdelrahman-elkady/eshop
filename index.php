@@ -1,7 +1,5 @@
 <?php
 
-
-
   session_start();
   include_once 'config/config.php';
   $bottom_scripts = 'assets/js/app.js';

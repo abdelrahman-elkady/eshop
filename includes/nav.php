@@ -8,6 +8,12 @@
     </div>
     <div class="navbar-collapse collapse">
 
+      <ul class="nav navbar-nav navbar-left">
+        <?php if ($userObj->isSignedIn()): ?>
+          <li><a href="cart.php">Shopping Cart</a></li>
+        <?php endif; ?>
+      </ul>
+
       <ul class="nav navbar-nav navbar-right">
         <?php if ($userObj->isSignedIn()): ?>
 
