@@ -23,7 +23,12 @@
           <input type="number" id="cart_quantity" name="cart_quantity" value="1" min="0">
         </div>
 
+        <div class="confirmation-total-wrapper">
+          <div class="separator pull-right"></div>
 
+          <p id="confirmation_total" class="text-right"></p>
+
+        </div>
 
       </div>
       <div class="modal-footer">

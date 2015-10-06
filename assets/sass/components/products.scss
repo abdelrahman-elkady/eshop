@@ -20,6 +20,10 @@
     .product-name {
       font-size: 25px;
     }
+
+    .currency {
+      color: adjust-hue($secondary-green, 2);
+    }
   }
 }
 
@@ -56,6 +60,25 @@
       font-size: 18px;
     }
   }
+
+  .confirmation-total-wrapper {
+    height: 70px;
+
+    p {
+      display: block;
+      margin-bottom: 0;
+    }
+
+    #confirmation_total {
+      padding-top: 20px;
+      width: 100%;
+
+    }
+  }
+}
+
+.separator {
+  display: inline;
 }
 
 .currency {

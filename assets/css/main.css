@@ -60,6 +60,11 @@
   margin: 0 auto;
   width: 70%; }
 
+.separator {
+  width: 80px;
+  height: 1px;
+  background-color: #2C3E50; }
+
 .product {
   margin: 60px auto;
   background-color: #34495e;
@@ -81,6 +86,8 @@
       color: white; }
     .product .product-info .product-name {
       font-size: 25px; }
+    .product .product-info .currency {
+      color: #16a08a; }
 
 .product-details #product_name {
   display: inline; }
@@ -99,6 +106,17 @@
   .product-details .quantity-wrapper label {
     padding-right: 15px;
     font-size: 18px; }
+.product-details .confirmation-total-wrapper {
+  height: 70px; }
+  .product-details .confirmation-total-wrapper p {
+    display: block;
+    margin-bottom: 0; }
+  .product-details .confirmation-total-wrapper #confirmation_total {
+    padding-top: 20px;
+    width: 100%; }
+
+.separator {
+  display: inline; }
 
 .currency {
   color: #16a08a; }
