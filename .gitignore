@@ -2,6 +2,7 @@ db_credentials.php
 node_modules/
 bower_components/
 .sass-cache/
+*~
 
 # Ignore all the avatars
 assets/images/avatars/
