@@ -29,6 +29,34 @@ class Products
         }
     }
 
+    public function addToCart()
+    {
+        $id = intval($_GET['id']);
+        $quantity = intval($_GET['quantity']);
+
+        if (isset($_SESSION['cart'][$id])) {
+            $_SESSION['cart'][$id] = intval($_SESSION['cart'][$id]) + $quantity;
+        } else {
+            $stmt = $this->db->prepare('SELECT * FROM `products` WHERE `product_id`=:id');
+
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+            $stmt->execute();
+
+            $data = $stmt->fetchAll();
+
+            if (empty($data)) {
+                $this->errors[] = 'Invalid product selected';
+
+                return false;
+            } else {
+                $_SESSION['cart'][$id] = $quantity;
+            }
+        }
+
+        return true;
+    }
+
     public function getErrors()
     {
         return $this->errors;
