@@ -159,7 +159,18 @@ class User
         
         if(count($fields) > 0) {
             #Something to update
-            
+            $query = 'UPDATE `users` SET ';
+            $i = 0;
+            $comma = '';
+            foreach($fields as $key => $value){
+                $_SESSION['user'][$key] = $value;
+                $query .= $comma.'`'.$key.'` = :p'.$i;       
+                $comma = ', ';
+                $i = $i + 1;
+            }
+            $id = $_SESSION['user']['id'];
+            $query .= ' WHERE `users`.`user_id` = '.$id;
+            $stmt = $this->db->prepare($query);
         }
 
         return true;
