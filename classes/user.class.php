@@ -170,7 +170,26 @@ class User
             }
             $id = $_SESSION['user']['id'];
             $query .= ' WHERE `users`.`user_id` = '.$id;
-            $stmt = $this->db->prepare($query);
+
+
+            try {
+                
+                $stmt = $this->db->prepare($query);
+                
+                $i = 0;
+                
+                foreach ($fields as $value) {
+                    $stmt->bindParam(':p'.$i, $value, PDO::PARAM_STR);
+                    $i = $i + 1;
+                }
+                ChromePhp::log($stmt);
+                $stmt->execute();
+
+            } catch (Exception $e) {
+                $this->errors[] = $e->getMessage();
+
+                return false;
+            }
         }
 
         return true;
