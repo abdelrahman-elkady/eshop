@@ -177,7 +177,7 @@ class User
                 
                 $i = 0;
                 
-                foreach ($fields as $value) {
+                foreach ($fields as $key => $value) {
                     $stmt->bindParam(':p'.$i, $value, PDO::PARAM_STR);
                     $i = $i + 1;
                 }
