@@ -12,7 +12,7 @@
   <?php foreach ($cart as $product): ?>
     <tr>
       <!-- TODO: id vs class ? -->
-      <td class="hidden" id="checkout_product_id">
+      <td class="hidden checkout_product" >
         <?php echo $product['product_id']; ?>
       </td>
 
@@ -33,7 +33,7 @@
       </td>
 
       <td>
-        <a href="#" id="minus" ><i class="delete-item fa fa-minus"></i></a>
+        <a href="#" ><i class="delete-item fa fa-minus"></i></a>
       </td>
     </tr>
   <?php endforeach; ?>

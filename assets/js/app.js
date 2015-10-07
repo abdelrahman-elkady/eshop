@@ -5,8 +5,10 @@ $(document).ready(function() {
     $('#avatar_file').click();
   });
 
-  $("#minus").click(function(event) {
-    $(this).closest("tr").remove();
+  $(".delete-item").click(function(event) {
+    $(this).closest("tr").fadeOut(400,function(){
+      $(this).remove();
+    });
    });
   
   $('#add_to_cart_modal').on('show.bs.modal', function(event) {
