@@ -52,9 +52,9 @@ class Cart
                     return false;
                 }
 
-                $diff = intval($item['stock'] < $item['quantity']);
+                $diff = intval($item['stock']) - intval($item['quantity']);
 
-                $stmt = $this->db->prepare('UPDATE `products` SET `stock` = {$diff} WHERE `product_id` = :id ');
+                $stmt = $this->db->prepare('UPDATE `products` SET `stock` ='.$diff.' WHERE `product_id` = :id ');
                 $stmt->bindParam(':id', intval($item['product_id']), PDO::PARAM_INT);
 
                 $stmt->execute();
