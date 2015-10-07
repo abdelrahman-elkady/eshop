@@ -65,3 +65,17 @@
   height: 1px;
   background-color: $primary-dark;
 }
+
+.confirmation-total-wrapper {
+  height: 70px;
+
+  p {
+    display: block;
+    margin-bottom: 0;
+  }
+
+  #confirmation_total {
+    padding-top: 20px;
+    width: 100%;
+  }
+}

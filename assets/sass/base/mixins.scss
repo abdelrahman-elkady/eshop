@@ -13,3 +13,9 @@
   -ms-border-radius: $radius;
   border-radius: $radius;
 }
+
+@mixin brightness($percentage) {
+  -webkit-filter: contrast($percentage);
+  -webkit-filter: brightness($percentage);
+  filter:brightness($percentage);
+}

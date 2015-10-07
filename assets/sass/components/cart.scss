@@ -1,0 +1,11 @@
+.cart-table {
+  margin: 40px auto;
+
+  .delete-item {
+    color: $danger-red;
+
+    &:hover {
+      @include brightness(140%);
+    }
+  }
+}
