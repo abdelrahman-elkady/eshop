@@ -5,6 +5,10 @@ $(document).ready(function() {
     $('#avatar_file').click();
   });
 
+  $("#minus").click(function(event) {
+    $(this).closest("tr").remove();
+   });
+  
   $('#add_to_cart_modal').on('show.bs.modal', function(event) {
     var button = $(event.relatedTarget);
     var id = button.data('id');
