@@ -37,4 +37,33 @@ class Cart
             return false;
         }
     }
+
+    public function processCart($items)
+    {
+        if (empty($items)) {
+            $this->errors[] = 'No items to process !';
+
+            return false;
+        } else {
+            foreach ($items as $item) {
+                if ($item['stock'] < $item['quantity']) {
+                    $this->errors[] = 'Our stock can\'t fulfil your need, we are sorry for that';
+
+                    return false;
+                }
+
+                $diff = intval($item['stock'] < $item['quantity']);
+
+                $stmt = $this->db->prepare('UPDATE `products` SET `stock` = {$diff} WHERE `product_id` = :id ');
+                $stmt->bindParam(':id', intval($item['product_id']), PDO::PARAM_INT);
+
+                $stmt->execute();
+            }
+        }
+    }
+
+    public function getErrors()
+    {
+        return $this->errors;
+    }
 }
