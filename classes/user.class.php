@@ -263,7 +263,7 @@ class User
 
     private function getHistory(){
          try {
-            $stmt = $this->db->prepare('SELECT * FROM `purchases` WHERE `user_id` = :id ');
+            $stmt = $this->db->prepare('SELECT * FROM `purchases` , `products` WHERE `purchases`.`user_id` = :id AND `purchases`.`product_id` = `products`.`product_id`');
 
             $stmt->execute();
             $stmt->bindParam(':id', intval($_SESSION['user']['id']), PDO::PARAM_INT);
