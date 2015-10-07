@@ -12,14 +12,25 @@ $(document).ready(function() {
 
     row.fadeOut(400, function() {
       $(this).remove();
+      displayTotal();
     });
-
+    
     $.ajax({
       url: "php-scripts/removeFromCart.php?id=" + id,
       success: function(data) {}
     });
 
   });
+  
+  function displayTotal(){
+	  var total = 0.0;
+	  $('.cart-table').find('.price').each(function() {
+	  	  total += parseFloat($(this).text());
+	  });
+	  console.log(total);
+	  $(document).find('#checkout_total').text(total);
+  }
+  displayTotal();
 
   $('#add_to_cart_modal').on('show.bs.modal', function(event) {
     var button = $(event.relatedTarget);
