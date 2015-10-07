@@ -46,8 +46,8 @@ class Cart
             return false;
         } else {
             foreach ($items as $item) {
+                unset($_SESSION['cart'][$item['product_id']]);
                 if ($item['stock'] < $item['quantity']) {
-                    unset($_SESSION['cart'][$item['product_id']]);
                     $this->errors[] = 'Our stock can\'t fulfil your need of '.$item['name'].', we are sorry for that';
                     continue;
                 }
@@ -57,6 +57,13 @@ class Cart
                 $stmt = $this->db->prepare('UPDATE `products` SET `stock` ='.$diff.' WHERE `product_id` = :id ');
                 $stmt->bindParam(':id', intval($item['product_id']), PDO::PARAM_INT);
 
+                $stmt->execute();
+
+                $stmt = $this->db->prepare('INSERT INTO `purchases` (user_id,product_id,quantity,purchase_date) VALUES (:uid,:pid,:quantity,NOW())');
+                $stmt->bindParam(':uid', intval($_SESSION['user']['id']), PDO::PARAM_INT);
+                $stmt->bindParam(':pid', intval($item['product_id']), PDO::PARAM_INT);
+                $stmt->bindParam(':quantity', intval($item['quantity']), PDO::PARAM_INT);
+            
                 $stmt->execute();
             }
         }
