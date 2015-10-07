@@ -47,9 +47,9 @@ class Cart
         } else {
             foreach ($items as $item) {
                 if ($item['stock'] < $item['quantity']) {
-                    $this->errors[] = 'Our stock can\'t fulfil your need, we are sorry for that';
-
-                    return false;
+                    unset($_SESSION['cart'][$item['product_id']]);
+                    $this->errors[] = 'Our stock can\'t fulfil your need of '.$item['name'].', we are sorry for that';
+                    continue;
                 }
 
                 $diff = intval($item['stock']) - intval($item['quantity']);
