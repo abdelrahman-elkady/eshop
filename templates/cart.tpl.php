@@ -28,7 +28,7 @@
         <?php echo $product['quantity']; ?>
       </td>
 
-      <td>
+      <td class="price">
         <?php echo round(floatval($product['price']) * floatval($product['quantity']), 2); ?> <i class="fa fa-usd"></i>
       </td>
 
