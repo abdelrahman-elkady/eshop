@@ -11,7 +11,7 @@
 
   <?php foreach ($cart as $product): ?>
     <tr>
-      
+
       <td class="hidden checkout-product" >
         <?php echo $product['product_id']; ?>
       </td>
@@ -29,7 +29,7 @@
       </td>
 
       <td>
-        <?php echo intval($product['price']) * intval($product['quantity']); ?> <i class="fa fa-usd"></i>
+        <?php echo round(floatval($product['price']) * floatval($product['quantity']), 2); ?> <i class="fa fa-usd"></i>
       </td>
 
       <td>
