@@ -78,6 +78,9 @@
     padding-top: 20px;
     width: 100%; }
 
+.history-table {
+  margin-top: 60px; }
+
 .product {
   margin: 60px auto;
   background-color: #34495e;

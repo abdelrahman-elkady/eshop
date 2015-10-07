@@ -11,6 +11,7 @@
       <ul class="nav navbar-nav navbar-left">
         <?php if ($userObj->isSignedIn()): ?>
           <li><a href="cart.php">Shopping Cart</a></li>
+          <li><a href="history.php">Purchase history</a></li>
         <?php endif; ?>
       </ul>
 
