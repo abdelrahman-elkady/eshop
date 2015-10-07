@@ -16,9 +16,7 @@ $(document).ready(function() {
 
     $.ajax({
       url: "php-scripts/removeFromCart.php?id=" + id,
-      success: function(data) {
-        alert(id);
-      }
+      success: function(data) {}
     });
 
   });

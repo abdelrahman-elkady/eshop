@@ -13,7 +13,7 @@ class Cart
 
     public function listCart()
     {
-        if (isset($_SESSION['cart'])) {
+        if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
             $invoiceProducts = array();
 
             $query = 'SELECT * FROM `products` WHERE `product_id` IN (';
