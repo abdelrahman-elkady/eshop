@@ -30,3 +30,4 @@ function __autoload($className)
 
 $userObj = new User($db);
 $productsObj = new Products($db);
+$cartObj = new Cart($db);
