@@ -27,7 +27,6 @@ $(document).ready(function() {
 	  $('.cart-table').find('.price').each(function() {
 	  	  total += parseFloat($(this).text());
 	  });
-	  console.log(total);
 	  $(document).find('#checkout_total').text(total);
   }
   displayTotal();
