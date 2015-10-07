@@ -1,4 +1,4 @@
-<h2 class="centered">Your purchase</h2>
+<h2 class="centered">Complete your purchase</h2>
 
 <table class="table table-hover cart-table">
   <tr>
