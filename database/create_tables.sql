@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `purchases`(
   `product_id` INT UNSIGNED NOT NULL,
   `quantity` INT NOT NULL,
   `purchase_date` DATETIME NOT NULL DEFAULT 0,
-  PRIMARY KEY(`user_id`,`product_id`),
+  PRIMARY KEY(`user_id`,`product_id`,`purchase_date`),
   FOREIGN KEY(`user_id`) REFERENCES users(`user_id`),
   FOREIGN KEY(`product_id`) REFERENCES products(`product_id`)
 );
