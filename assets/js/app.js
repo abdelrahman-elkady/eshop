@@ -6,11 +6,23 @@ $(document).ready(function() {
   });
 
   $(".delete-item").click(function(event) {
-    $(this).closest("tr").fadeOut(400,function(){
+
+    var row = $(this).closest("tr");
+    var id = parseInt(row.find('.checkout-product').text());
+
+    row.fadeOut(400, function() {
       $(this).remove();
     });
-   });
-  
+
+    $.ajax({
+      url: "php-scripts/removeFromCart.php?id=" + id,
+      success: function(data) {
+        alert(id);
+      }
+    });
+
+  });
+
   $('#add_to_cart_modal').on('show.bs.modal', function(event) {
     var button = $(event.relatedTarget);
     var id = button.data('id');

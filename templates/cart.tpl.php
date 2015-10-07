@@ -11,8 +11,8 @@
 
   <?php foreach ($cart as $product): ?>
     <tr>
-      <!-- TODO: id vs class ? -->
-      <td class="hidden checkout_product" >
+      
+      <td class="hidden checkout-product" >
         <?php echo $product['product_id']; ?>
       </td>
 
