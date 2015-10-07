@@ -3,6 +3,7 @@ class User
 {
     private $db;
     private $errors;
+    private $history;
 
     public function __construct($db)
     {
@@ -258,5 +259,21 @@ class User
         }
 
         return $target_file;
+    }
+
+    private function getHistory(){
+         try {
+            $stmt = $this->db->prepare('SELECT * FROM `purchases` WHERE `user_id` = :id ');
+
+            $stmt->execute();
+            $stmt->bindParam(':id', intval($_SESSION['user']['id']), PDO::PARAM_INT);
+            $history = $stmt->fetchAll();
+
+            return $history;
+        } catch (Exception $e) {
+            $this->errors[] = $e->getMessage();
+
+            return false;
+        }
     }
 }
