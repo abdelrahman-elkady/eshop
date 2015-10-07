@@ -9,7 +9,9 @@ if (!$userObj->isSignedIn()) {
     Utils::redirect('login.php');
 } else {
     $items = $cartObj->listCart();
-    $cartObj->processCart($items);
+    $success = $cartObj->processCart($items);
 }
+
+$errors = $cartObj->getErrors();
 
 include_once 'layouts/base.php';

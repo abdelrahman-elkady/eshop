@@ -63,10 +63,12 @@ class Cart
                 $stmt->bindParam(':uid', intval($_SESSION['user']['id']), PDO::PARAM_INT);
                 $stmt->bindParam(':pid', intval($item['product_id']), PDO::PARAM_INT);
                 $stmt->bindParam(':quantity', intval($item['quantity']), PDO::PARAM_INT);
-            
+
                 $stmt->execute();
             }
         }
+
+        return true;
     }
 
     public function getErrors()
