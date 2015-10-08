@@ -74,7 +74,8 @@
   .confirmation-total-wrapper p {
     display: block;
     margin-bottom: 0; }
-  .confirmation-total-wrapper #confirmation_total {
+  .confirmation-total-wrapper #confirmation_total,
+  .confirmation-total-wrapper #checkout_total {
     padding-top: 20px;
     width: 100%; }
 

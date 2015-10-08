@@ -14,20 +14,21 @@ $(document).ready(function() {
       $(this).remove();
       displayTotal();
     });
-    
+
     $.ajax({
       url: "php-scripts/removeFromCart.php?id=" + id,
       success: function(data) {}
     });
 
   });
-  
-  function displayTotal(){
-	  var total = 0.0;
-	  $('.cart-table').find('.price').each(function() {
-	  	  total += parseFloat($(this).text());
-	  });
-	  $(document).find('#checkout_total').text(total);
+
+  function displayTotal() {
+    var total = 0.0;
+    $('.cart-table').find('.price').each(function() {
+      total += parseFloat($(this).text());
+    });
+    $('#checkout_total').text('Total : ' + total);
+    $('#checkout_total').append(" <i class='fa fa-usd currency'></i>");
   }
   displayTotal();
 
@@ -57,7 +58,7 @@ $(document).ready(function() {
         quantitySpinner.attr('max', data['stock']);
 
         modal.find('#confirmation_total').text("Total : " + data['price']);
-        modal.find('#confirmation_total').append("<i class='fa fa-usd currency'></i>");
+        modal.find('#confirmation_total').append(" <i class='fa fa-usd currency'></i>");
 
         modal.find('#add_to_cart_button').attr('href', 'index.php?id=' + id + '&quantity=' + quantitySpinner.val());
 
