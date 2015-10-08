@@ -33,7 +33,7 @@
       </td>
 
       <td>
-        <a href="#" ><i class="delete-item fa fa-minus"></i></a>
+        <a href="#" ><i class="delete-item fa fa-times"></i></a>
       </td>
     </tr>
   <?php endforeach; ?>
