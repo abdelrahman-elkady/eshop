@@ -16,7 +16,11 @@
         <?php endif; ?>
 
       <?php else: ?>
+        <?php if (intval($product['stock']) == 0): ?>
+          <button href="#" class="btn disabled btn-wide btn-block out-of-stock">OUT OF STOCK</button>
+        <?php else: ?>
         <a href="login.php" class="btn btn-success btn-wide btn-block">BUY</a>
+      <?php endif; ?>
       <?php endif; ?>
 
     </div>
