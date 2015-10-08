@@ -23,9 +23,14 @@ class Cart
             }
 
             $query = substr($query, 0, -1).') ORDER BY name ASC';
+            try {
+                $stmt = $this->db->prepare($query);
+                $stmt->execute();
+            } catch (Exception $e) {
+                $this->errors[] = $e->getMessage();
 
-            $stmt = $this->db->prepare($query);
-            $stmt->execute();
+                return false;
+            }
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $row['quantity'] = $_SESSION['cart'][$row['product_id']];
@@ -54,17 +59,23 @@ class Cart
 
                 $diff = intval($item['stock']) - intval($item['quantity']);
 
-                $stmt = $this->db->prepare('UPDATE `products` SET `stock` ='.$diff.' WHERE `product_id` = :id ');
-                $stmt->bindParam(':id', intval($item['product_id']), PDO::PARAM_INT);
+                try {
+                    $stmt = $this->db->prepare('UPDATE `products` SET `stock` ='.$diff.' WHERE `product_id` = :id ');
+                    $stmt->bindParam(':id', intval($item['product_id']), PDO::PARAM_INT);
 
-                $stmt->execute();
+                    $stmt->execute();
 
-                $stmt = $this->db->prepare('INSERT INTO `purchases` (user_id,product_id,quantity,purchase_date) VALUES (:uid,:pid,:quantity,NOW())');
-                $stmt->bindParam(':uid', intval($_SESSION['user']['id']), PDO::PARAM_INT);
-                $stmt->bindParam(':pid', intval($item['product_id']), PDO::PARAM_INT);
-                $stmt->bindParam(':quantity', intval($item['quantity']), PDO::PARAM_INT);
+                    $stmt = $this->db->prepare('INSERT INTO `purchases` (user_id,product_id,quantity,purchase_date) VALUES (:uid,:pid,:quantity,NOW())');
+                    $stmt->bindParam(':uid', intval($_SESSION['user']['id']), PDO::PARAM_INT);
+                    $stmt->bindParam(':pid', intval($item['product_id']), PDO::PARAM_INT);
+                    $stmt->bindParam(':quantity', intval($item['quantity']), PDO::PARAM_INT);
 
-                $stmt->execute();
+                    $stmt->execute();
+                } catch (Exception $e) {
+                    $this->errors[] = $e->getMessage();
+
+                    return false;
+                }
             }
         }
 

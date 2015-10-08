@@ -37,20 +37,26 @@ class Products
         if (isset($_SESSION['cart'][$id])) {
             $_SESSION['cart'][$id] = intval($_SESSION['cart'][$id]) + $quantity;
         } else {
-            $stmt = $this->db->prepare('SELECT * FROM `products` WHERE `product_id`=:id');
+            try {
+                $stmt = $this->db->prepare('SELECT * FROM `products` WHERE `product_id`=:id');
 
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+                $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
-            $stmt->execute();
+                $stmt->execute();
 
-            $data = $stmt->fetchAll();
+                $data = $stmt->fetchAll();
 
-            if (empty($data)) {
-                $this->errors[] = 'Invalid product selected';
+                if (empty($data)) {
+                    $this->errors[] = 'Invalid product selected';
+
+                    return false;
+                } else {
+                    $_SESSION['cart'][$id] = $quantity;
+                }
+            } catch (Exception $e) {
+                $this->errors[] = $e->getMessage();
 
                 return false;
-            } else {
-                $_SESSION['cart'][$id] = $quantity;
             }
         }
 
