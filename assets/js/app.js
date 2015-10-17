@@ -38,7 +38,7 @@ $(document).ready(function() {
     var modal = $(this);
     var price = 0;
     var quantitySpinner = modal.find('#cart_quantity');
-
+    var stock;
     quantitySpinner.val(1); // Resetting the value again if another modal was opened before
 
 
@@ -48,14 +48,14 @@ $(document).ready(function() {
       dataType: "json",
       success: function(data) {
         price = data['price'];
-
+        stock = data['stock'];
         modal.find('#product_name').text(data['name']);
 
         modal.find('#unit_price').text(data['price']);
         modal.find('#unit_price').append("<i class='fa fa-usd currency'></i>");
 
         modal.find('#product_description').text(data['description']);
-        quantitySpinner.attr('max', data['stock']);
+        quantitySpinner.attr('max', stock);
 
         modal.find('#confirmation_total').text("Total : " + data['price']);
         modal.find('#confirmation_total').append(" <i class='fa fa-usd currency'></i>");
@@ -66,6 +66,13 @@ $(document).ready(function() {
     });
 
     quantitySpinner.bind('keyup mouseup', function() {
+
+      if (isNaN(quantitySpinner.val()) || quantitySpinner.val() <= 0) {
+        quantitySpinner.val(stock);
+      } else if (quantitySpinner.val() > stock) {
+        quantitySpinner.val(stock);
+      }
+
       modal.find('#confirmation_total').text("Total : " + (parseFloat(quantitySpinner.val()) * price).toFixed(2));
       modal.find('#confirmation_total').append("<i class='fa fa-usd currency'></i>");
 

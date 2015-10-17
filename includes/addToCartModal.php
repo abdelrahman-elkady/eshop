@@ -20,7 +20,7 @@
 
         <div class="quantity-wrapper">
           <label for="cart_quantity">quantity:</label>
-          <input type="number" id="cart_quantity" name="cart_quantity" value="1" min="0">
+          <input type="number" id="cart_quantity" name="cart_quantity" value="1" min="1">
         </div>
 
         <div class="confirmation-total-wrapper">
